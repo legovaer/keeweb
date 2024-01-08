@@ -21,10 +21,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-  
-    - name: Build
+    - name: Install npm modules
+      run: npm ci
+    - name: Test
       env:
         NODE_OPTIONS: "--openssl-legacy-provider"
-      run: |
-        npm install
-        grunt test
+      run: npm test
