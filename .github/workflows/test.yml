@@ -17,6 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: browser-actions/setup-chrome@v1
+    - name: Set Swap Space
+      if: runner.os == 'Linux'
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 10
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
