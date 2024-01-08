@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const rootDir = path.join(__dirname, '..');
@@ -54,7 +54,7 @@ function config(options) {
                 baron: `baron/baron${devMode ? '' : '.min'}.js`,
                 qrcode: `jsqrcode/dist/qrcode${devMode ? '' : '.min'}.js`,
                 argon2: 'argon2-browser/dist/argon2.js',
-                marked: devMode ? 'marked/lib/marked.js' : 'marked/marked.min.js',
+                //marked: devMode ? 'marked/lib/marked.esm.js' : 'marked/marked.min.js',
                 dompurify: `dompurify/dist/purify${devMode ? '' : '.min'}.js`,
                 tweetnacl: `tweetnacl/nacl${devMode ? '' : '.min'}.js`,
                 hbs: 'handlebars/runtime.js',
@@ -190,11 +190,16 @@ function config(options) {
                         ecma: 6
                     }
                 }),
-                new OptimizeCSSAssetsPlugin({
-                    cssProcessorPluginOptions: {
-                        preset: ['default', { discardComments: { removeAll: true } }]
-                    }
-                }),
+                new CssMinimizerPlugin({
+                    minimizerOptions: {
+                        preset: [
+                        "default",
+                        {
+                            discardComments: { removeAll: true },
+                        },
+                        ],
+                    },
+                    }),
                 new BundleAnalyzerPlugin({
                     openAnalyzer: false,
                     analyzerMode: 'static',
@@ -219,7 +224,9 @@ function config(options) {
                 $: 'jquery',
                 babelHelpers: 'babel-helpers'
             }),
-            new webpack.IgnorePlugin(/^(moment)$/),
+            new webpack.IgnorePlugin({
+                resourceRegExp: /^(moment)$/
+            }),
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css'
             })
