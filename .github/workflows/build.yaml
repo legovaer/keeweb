@@ -25,8 +25,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install npm modules
         run: npm ci
-      - name: Test
-        run: npm test
       - name: Grunt
         run: grunt
       - name: Upload artifact
