@@ -1,8 +1,8 @@
 # These are supported funding model platforms
 
-github: [keeweb, antelle]
+github: [legovaer, keeweb, antelle]
 patreon: # Replace with a single Patreon username
-open_collective: keeweb
+#open_collective: keeweb
 ko_fi: # Replace with a single Ko-fi username
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
 community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
