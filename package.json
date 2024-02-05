@@ -79,7 +79,7 @@
     "load-grunt-tasks": "5.1.0",
     "lodash": "^4.17.21",
     "marked": "^11.1.1",
-    "mini-css-extract-plugin": "^1.6.0",
+    "mini-css-extract-plugin": "^2.8.0",
     "mocha": "^8.4.0",
     "morphdom": "^2.6.1",
     "node-fetch": "^2.6.1",
